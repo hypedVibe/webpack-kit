@@ -1,7 +1,11 @@
+const path = require('path');
+
 module.exports = {
-  entry: ["./src/app.js", "./src/utils"],
+  context: path.resolve(__dirname, 'src/js'),
+  entry: ['./app.js', './utils.js'],
   output: {
-    filename: "./src/bundle.js"
+    path: path.resolve('dist'),
+    filename: 'bundle.js'
   },
   module: {
     loaders: [

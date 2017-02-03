@@ -6,4 +6,4 @@ const login = (username, password) => {
   }
 };
 
-module.exports = login;
+export default login;

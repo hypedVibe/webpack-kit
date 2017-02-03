@@ -4,10 +4,13 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
+    "prestart": "npm run prod-build",
     "start": "npm-run-all --parallel open:dist lint:watch",
     "open:dist": "node server/server.js",
     "lint": "esw webpack.config.* src server --color",
-    "lint:watch": "npm run lint --watch"
+    "lint:watch": "npm run lint --watch",
+    "dev-build": "webpack --config webpack.config.dev.js",
+    "prod-build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",

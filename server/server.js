@@ -9,7 +9,7 @@ const port = Number(process.env.PORT || 3000);
 const app = express();
 
 app.use(compression());
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.listen(port, (err) => {
   if(err) {

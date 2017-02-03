@@ -68,12 +68,15 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const login = __webpack_require__(2);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__login__ = __webpack_require__(2);
+
 
 document.write("Hello");
-login('admin', 'admin');
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__login__["a" /* default */])('admin', 'admin');
 
 
 /***/ }),
@@ -85,8 +88,9 @@ login('admin', 'admin');
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 const login = (username, password) => {
   if(username !== 'admin' || password !== 'admin') {
 
@@ -95,7 +99,7 @@ const login = (username, password) => {
   }
 };
 
-module.exports = login;
+/* harmony default export */ __webpack_exports__["a"] = login;
 
 /***/ }),
 /* 3 */

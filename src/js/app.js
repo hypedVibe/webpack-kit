@@ -1,4 +1,4 @@
-const login = require('./login');
+import login from './login';
 
 document.write("Hello");
 login('admin', 'admin');
