@@ -25,6 +25,11 @@ module.exports = {
         use: WebpackStrip.loader('console.log')
       },
       {
+        test: /\.html$/,
+        exclude: /(node_modules|dist)/,
+        use: 'raw-loader'
+      },
+      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
