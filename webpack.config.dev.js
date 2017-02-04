@@ -1,42 +1,60 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, 'src/js'),
-  entry: ['./app.js', './utils.js'],
+  devtool: 'inline-source-map',
+  entry: ['babel-polyfill', './src/js/app.js'],
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: '/\.js$/',
-        exclude: '/node_modules',
-        loader: "babel-loader"
+        test: /\.js$/,
+        include: [path.resolve(__dirname, 'src/js')],
+        exclude: /(node_modules|dist)/,
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader'
+          fallback: 'style-loader',
+          use: 'css-loader?sourceMap'
         })
       }, 
       {
         test: /\.woff$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
+        use: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
       }, 
       {
         test: /\.woff2$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
+        use: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
       },
       {
-        test: /\.(eot|ttf|svg|gif|png)$/,
-        loader: "file-loader"
+        test: /\.(eot|ttf|svg|gif|png|jpg)$/,
+        use: "file-loader"
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'bundle.css', disable: false, allChunks: true})
+    new ExtractTextPlugin({filename: 'bundle.css'}),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true
+    })
   ]
 };

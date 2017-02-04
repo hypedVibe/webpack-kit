@@ -1,9 +1,8 @@
-import login from './login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import 'bootstrap/dist/js/bootstrap';
 import '../css/style.css';
 
-document.write("Hello");
-login('admin', 'admin');
+/*eslint-disable no-console*/
+const fn = () => {alert('omg')};
+fn();
 console.log('app loaded');
